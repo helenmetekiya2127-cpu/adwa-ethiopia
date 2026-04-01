@@ -1,0 +1,152 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Playfair Display";
+  src: url("/assets/fonts/PlayfairDisplay.woff2") format("woff2");
+  font-weight: 400 800;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Plus Jakarta Sans";
+  src: url("/assets/fonts/PlusJakartaSans.woff2") format("woff2");
+  font-weight: 300 700;
+  font-display: swap;
+}
+
+@layer base {
+  :root {
+    --radius: 0.75rem;
+    /* Deep dark museum background — cool blue-gray */
+    --background: 0.12 0.01 250;
+    --foreground: 0.96 0.01 90;
+    --card: 0.17 0.01 250;
+    --card-foreground: 0.94 0.01 90;
+    --popover: 0.15 0.01 250;
+    --popover-foreground: 0.94 0.01 90;
+    /* Muted Ethiopian green */
+    --primary: 0.72 0.18 145;
+    --primary-foreground: 0.12 0.01 250;
+    /* Muted Ethiopian gold */
+    --secondary: 0.75 0.14 85;
+    --secondary-foreground: 0.12 0.01 250;
+    /* Muted Ethiopian red */
+    --accent: 0.62 0.16 28;
+    --accent-foreground: 0.96 0.01 90;
+    --muted: 0.22 0.01 250;
+    --muted-foreground: 0.65 0.02 90;
+    --border: 0.28 0.02 250;
+    --input: 0.2 0.01 250;
+    --ring: 0.72 0.18 145;
+    --destructive: 0.55 0.2 28;
+    --destructive-foreground: 0.96 0.01 90;
+    /* Ethiopian flag exact colors */
+    --eth-green: oklch(0.52 0.18 145);
+    --eth-yellow: oklch(0.88 0.18 95);
+    --eth-red: oklch(0.48 0.22 27);
+    /* Muted palette tokens */
+    --gold: oklch(0.75 0.14 85);
+    --chart-1: 0.72 0.18 145;
+    --chart-2: 0.75 0.14 85;
+    --chart-3: 0.62 0.16 28;
+    --chart-4: 0.55 0.12 70;
+    --chart-5: 0.65 0.15 80;
+    --sidebar: 0.14 0.01 250;
+    --sidebar-foreground: 0.94 0.01 90;
+    --sidebar-primary: 0.72 0.18 145;
+    --sidebar-primary-foreground: 0.12 0.01 250;
+    --sidebar-accent: 0.22 0.01 250;
+    --sidebar-accent-foreground: 0.94 0.01 90;
+    --sidebar-border: 0.28 0.02 250;
+    --sidebar-ring: 0.72 0.18 145;
+  }
+
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: "Playfair Display", Georgia, serif;
+  }
+}
+
+/* Scroll animation — fade up */
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 1s ease-out, transform 1s ease-out;
+}
+.fade-in-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Ethiopian flag tricolor stripe */
+.eth-stripe {
+  height: 4px;
+  display: flex;
+}
+.eth-stripe > .s-green {
+  flex: 1;
+  background: #078930;
+}
+.eth-stripe > .s-yellow {
+  flex: 1;
+  background: #fcdd09;
+}
+.eth-stripe > .s-red {
+  flex: 1;
+  background: #da121a;
+}
+
+/* Section scroll offset */
+section {
+  scroll-margin-top: 72px;
+}
+
+/* Hero card hover */
+.hero-card {
+  border-radius: 16px;
+  overflow: hidden;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  cursor: default;
+}
+.hero-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(252, 181, 20, 0.2);
+}
+
+/* Museum card standard hover */
+.museum-card {
+  transition: transform 0.4s cubic-bezier(0.34, 1.4, 0.64, 1), box-shadow 0.4s
+    ease;
+}
+.museum-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.55);
+}
+
+/* Scrollbar theming */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: oklch(0.15 0.01 250);
+}
+::-webkit-scrollbar-thumb {
+  background: oklch(0.3 0.02 250);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: oklch(0.4 0.02 250);
+}

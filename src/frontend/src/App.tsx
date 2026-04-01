@@ -1,0 +1,100 @@
+import { Toaster } from "@/components/ui/sonner";
+import { useState } from "react";
+import EntryPopup from "./components/EntryPopup";
+import TopNav from "./components/TopNav";
+import AboutSection from "./sections/AboutSection";
+import ChatSection from "./sections/ChatSection";
+import CommentsSection from "./sections/CommentsSection";
+import DocumentarySection from "./sections/DocumentarySection";
+import DonationSection from "./sections/DonationSection";
+import GallerySection from "./sections/GallerySection";
+import HeroesSection from "./sections/HeroesSection";
+import HistorySection from "./sections/HistorySection";
+import HomeSection from "./sections/HomeSection";
+import LearnSection from "./sections/LearnSection";
+import MusicSection from "./sections/MusicSection";
+import QuizSection from "./sections/QuizSection";
+
+export type Tab =
+  | "home"
+  | "learn"
+  | "quiz"
+  | "chat"
+  | "gallery"
+  | "history"
+  | "video"
+  | "music"
+  | "donation"
+  | "about"
+  | "comments";
+
+export default function App() {
+  const [popupDismissed, setPopupDismissed] = useState<boolean>(
+    () => localStorage.getItem("adwa_entry_done") === "true",
+  );
+
+  function handlePopupDismiss() {
+    localStorage.setItem("adwa_entry_done", "true");
+    setPopupDismissed(true);
+  }
+
+  return (
+    <div className="min-h-screen bg-background">
+      {!popupDismissed && <EntryPopup onDismiss={handlePopupDismiss} />}
+      <TopNav />
+      <main>
+        <section id="home">
+          <HomeSection />
+        </section>
+        <section id="learn">
+          <LearnSection />
+        </section>
+        <section id="history">
+          <HistorySection />
+        </section>
+        <section id="heroes">
+          <HeroesSection />
+        </section>
+        <section id="gallery">
+          <GallerySection />
+        </section>
+        <section id="quiz">
+          <QuizSection />
+        </section>
+        <section id="chat">
+          <ChatSection />
+        </section>
+        <section id="documentary">
+          <DocumentarySection />
+        </section>
+        <section id="music">
+          <MusicSection />
+        </section>
+        <section id="donation">
+          <DonationSection />
+        </section>
+        <section id="comments">
+          <CommentsSection />
+        </section>
+        <section id="about">
+          <AboutSection />
+        </section>
+      </main>
+
+      <footer className="text-center py-10 px-4 border-t border-border">
+        <div
+          className="eth-stripe mb-6 mx-auto"
+          style={{ height: "3px", maxWidth: "120px" }}
+        >
+          <div className="s-green" />
+          <div className="s-yellow" />
+          <div className="s-red" />
+        </div>
+        <p className="text-sm text-muted-foreground">
+          © 2026 by Helen Metekiya
+        </p>
+      </footer>
+      <Toaster />
+    </div>
+  );
+}
